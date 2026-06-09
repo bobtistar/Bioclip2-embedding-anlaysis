@@ -1,0 +1,12 @@
+[12:11:04] args: {'model': 'bioclip2', 'toy': False, 'mock': False, 'csv': '/content/Harness-project/workspace/bioclip2/04_experiments/code/rare_species/taxonomy.csv', 'image_root': '/content/Harness-project/workspace/bioclip2/04_experiments/code/rare_species/images', 'seed': 42, 'n_seeds': 5, 'device': 'cuda', 'out': '/content/Harness-project/workspace/bioclip2/04_experiments/code/../results/rare_species_bioclip2', 'batch_size': 64, 'num_workers': 4, 'amp': True, 'cache_emb': '/content/Harness-project/workspace/bioclip2/04_experiments/code/../results/rare_species_bioclip2/img_emb_bioclip2.npz', 'max_per_class': None, 'hf_token': None, 'hf_token_file': None, 'hf_token_prompt': False, 'env_file': None, 'no_env_file': False}
+[12:11:04] Real dataset: 400 species, 11983 images
+[12:11:04] Loading model: bioclip2 (device=cuda)
+[12:11:38] Model loaded: ModelInfo(name='hf:imageomics/bioclip-2', embedding_dim=768, image_size=224, backbone='imageomics/bioclip-2', source='hf')
+[12:22:46] Encoded 11983 real images -> (11983, 768)
+[12:22:54]   임베딩 캐시 저장: /content/Harness-project/workspace/bioclip2/04_experiments/code/../results/rare_species_bioclip2/img_emb_bioclip2.npz
+[12:22:54] == Experiment 1 (RQ1): hierarchical vs flat ==
+[12:35:38] exp1 success: {'intra_drop_pct': -1.2836620498438386e-05, 'inter_margin_ratio': 0.9045540058733296, 'silhouette_abs_gain': -0.03820545673370357, 'passes_RQ1_threshold': False}
+[12:35:38] == Experiment 2 (RQ2): per-rank silhouette + latent taxonomy probe ==
+[12:53:08] exp2 latent probe: {'real_silhouette': 0.19014760851860046, 'random_taxonomy_mean': -0.0750998991727829, 'random_taxonomy_std': 0.0011304977773593456, 'z_score': 234.62687564251164}
+[12:53:08] == Experiment 3 (RQ3): counterfactual ablation C0..C5 ==
+[13:35:55] exp3 semantic_organizer_supported: False

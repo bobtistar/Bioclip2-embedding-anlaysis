@@ -1,0 +1,110 @@
+{
+  "means_by_condition": {
+    "C0": {
+      "intra_var": 0.07206900943406426,
+      "inter_margin": 14.9120493089803,
+      "silhouette": 0.6826976537704468
+    },
+    "C1": {
+      "intra_var": 0.07206901005797098,
+      "inter_margin": 14.50002295010113,
+      "silhouette": 0.671467125415802
+    },
+    "C2": {
+      "intra_var": 0.07206900516472729,
+      "inter_margin": 10.75149659751462,
+      "silhouette": 0.5958298563957214
+    },
+    "C3": {
+      "intra_var": 0.20492715583830598,
+      "inter_margin": 8.030463230908252,
+      "silhouette": 0.30144545435905457
+    },
+    "C4": {
+      "intra_var": 0.10005801761529695,
+      "inter_margin": 11.4458155963523,
+      "silhouette": 0.5517776608467102
+    }
+  },
+  "stds_by_condition": {
+    "C0": {
+      "intra_var": 4.770352270860598e-08,
+      "inter_margin": 7.127237847111399e-05,
+      "silhouette": 1.1920928955078125e-07
+    },
+    "C1": {
+      "intra_var": 4.772812892808216e-08,
+      "inter_margin": 6.768534090769504e-05,
+      "silhouette": 1.130918619692938e-07
+    },
+    "C2": {
+      "intra_var": 4.7497989791871494e-08,
+      "inter_margin": 5.712650904308705e-05,
+      "silhouette": 3.2950103190148484e-07
+    },
+    "C3": {
+      "intra_var": 0.00018236755120727824,
+      "inter_margin": 0.09644629275385318,
+      "silhouette": 0.0007277329959408445
+    },
+    "C4": {
+      "intra_var": 0.0001991284021914146,
+      "inter_margin": 0.07645163168318815,
+      "silhouette": 0.0007699096854328369
+    }
+  },
+  "preservation_ratio": {
+    "C2": {
+      "intra_var": {
+        "point": NaN,
+        "ci_lo": NaN,
+        "ci_hi": NaN
+      },
+      "inter_margin": {
+        "point": 10.097782879139196,
+        "ci_lo": 10.09765625463977,
+        "ci_hi": 10.097885608833915
+      },
+      "silhouette": {
+        "point": 7.734969774621784,
+        "ci_lo": 7.7349387743426234,
+        "ci_hi": 7.735013512737302
+      }
+    },
+    "C3": {
+      "intra_var": {
+        "point": NaN,
+        "ci_lo": NaN,
+        "ci_hi": NaN
+      },
+      "inter_margin": {
+        "point": 16.701809577231355,
+        "ci_lo": 16.49166686194449,
+        "ci_hi": 16.900209395876622
+      },
+      "silhouette": {
+        "point": 33.94784195543525,
+        "ci_lo": 33.88214068805102,
+        "ci_hi": 33.99601526094149
+      }
+    },
+    "C4": {
+      "intra_var": {
+        "point": NaN,
+        "ci_lo": NaN,
+        "ci_hi": NaN
+      },
+      "inter_margin": {
+        "point": 8.412652730744629,
+        "ci_lo": 8.269465035496458,
+        "ci_hi": 8.581604161594099
+      },
+      "silhouette": {
+        "point": 11.657509802371703,
+        "ci_lo": 11.598781807092038,
+        "ci_hi": 11.717293333721612
+      }
+    }
+  },
+  "semantic_organizer_supported": false
+}

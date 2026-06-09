@@ -1,0 +1,20 @@
+[09:12:20] args: {'model': 'openclip-vitl14', 'toy': False, 'mock': False, 'allow_mock_fallback': False, 'csv': '/workspace/inat21/inat21_val_Aves-Insecta-Plantae-Fungi-Reptilia_s200_n15.csv', 'image_root': '/workspace/inat21', 'seed': 42, 'n_seeds': 5, 'visualize': False, 'vis_method': 'umap', 'device': 'cuda', 'out': '../results/inat21_Aves-Insecta-Plantae-Fungi-Reptilia_openclip-vitl14', 'batch_size': 64, 'num_workers': 8, 'amp': True, 'cache_emb': '../results/inat21_Aves-Insecta-Plantae-Fungi-Reptilia_openclip-vitl14/img_emb_openclip-vitl14.npz', 'max_per_class': None, 'hf_token': None, 'hf_token_file': None, 'hf_token_prompt': False, 'env_file': None, 'no_env_file': False}
+[09:12:20] Real dataset: 821 species, 8210 images
+[09:12:20] Loading model: openclip-vitl14 (device=cuda)
+[09:12:34] Model loaded: ModelInfo(name='openclip:ViT-L-14@laion2b_s32b_b82k', embedding_dim=768, image_size=224, backbone='ViT-L-14', source='open_clip')
+[09:13:05] Encoded 8210 real images -> (8210, 768)
+[09:13:10]   임베딩 캐시 저장: ../results/inat21_Aves-Insecta-Plantae-Fungi-Reptilia_openclip-vitl14/img_emb_openclip-vitl14.npz
+[09:13:10] == Experiment 1 (RQ1): hierarchical vs flat ==
+[09:15:25] exp1 success: {'intra_drop_pct': -2.9205475094426523e-06, 'inter_margin_ratio': 0.46742478111673336, 'silhouette_abs_gain': -0.22566751241683958, 'passes_RQ1_threshold': False}
+[09:15:25] == Experiment 2 (RQ2): per-rank silhouette + latent taxonomy probe ==
+[09:18:46] exp2 latent probe: {'real_silhouette': -0.01735895499587059, 'random_taxonomy_mean': -0.18208664715290068, 'random_taxonomy_std': 0.003251139677773271, 'z_score': 50.6675202569735}
+[09:18:46] == Experiment 3 (RQ3): counterfactual ablation C0..C4 ==
+[09:24:23] exp3 semantic_organizer_supported: False
+[09:24:23] == Zero-shot top-1 accuracy (per-class text prototypes) ==
+[09:24:28] zero-shot top-1: {'C0': 0.11327649208282582, 'C1': 0.10365408038976857, 'C2': 0.08185140073081608, 'C3': 0.03252131546894032, 'C4': 0.11352009744214372}
+[09:24:33] t-SNE figure: ../results/inat21_Aves-Insecta-Plantae-Fungi-Reptilia_openclip-vitl14/tsne_image_embeddings.png
+[09:24:33] git_hash: 9c1aa34
+[09:24:33]   numpy: 1.26.4
+[09:24:33]   torch: 2.4.1+cu124
+[09:24:33]   open_clip: 3.2.0
+[09:24:33]   sklearn: 1.8.0

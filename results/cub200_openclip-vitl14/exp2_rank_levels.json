@@ -1,0 +1,93 @@
+{
+  "kingdom": {
+    "skipped": "degenerate at this rank"
+  },
+  "phylum": {
+    "skipped": "degenerate at this rank"
+  },
+  "class": {
+    "skipped": "degenerate at this rank"
+  },
+  "order": {
+    "C0": {
+      "intra_var": 0.22699007711240224,
+      "inter_margin": 6.157884309956584,
+      "silhouette": 0.07359498739242554,
+      "rankme": 397.9952697753906,
+      "uniformity": -1.4656749963760376,
+      "knn_purity@10": 1.0
+    },
+    "C1": {
+      "intra_var": 0.1607589221426419,
+      "inter_margin": 5.074454668545913,
+      "silhouette": 0.12099587172269821,
+      "rankme": 367.3710632324219,
+      "uniformity": -1.059000849723816,
+      "knn_purity@10": 0.999770953512046
+    },
+    "delta_silhouette_C1_minus_C0": 0.047400884330272675
+  },
+  "family": {
+    "C0": {
+      "intra_var": 0.18991248654883083,
+      "inter_margin": 6.719182601317861,
+      "silhouette": 0.17479214072227478,
+      "rankme": 397.9952697753906,
+      "uniformity": -1.4656749963760376,
+      "knn_purity@10": 0.9999066847641669
+    },
+    "C1": {
+      "intra_var": 0.1381077419330434,
+      "inter_margin": 4.586639478700856,
+      "silhouette": 0.1705423891544342,
+      "rankme": 367.3710632324219,
+      "uniformity": -1.059000849723816,
+      "knn_purity@10": 0.9956990159484223
+    },
+    "delta_silhouette_C1_minus_C0": -0.004249751567840576
+  },
+  "genus": {
+    "C0": {
+      "intra_var": 0.11433516220565428,
+      "inter_margin": 8.52751162347159,
+      "silhouette": 0.3569255471229553,
+      "rankme": 397.9952697753906,
+      "uniformity": -1.4656749963760376,
+      "knn_purity@10": 0.9994231421784867
+    },
+    "C1": {
+      "intra_var": 0.10316956373291057,
+      "inter_margin": 4.1884051451461435,
+      "silhouette": 0.20964926481246948,
+      "rankme": 367.3710632324219,
+      "uniformity": -1.059000849723816,
+      "knn_purity@10": 0.9876823888700375
+    },
+    "delta_silhouette_C1_minus_C0": -0.14727628231048584
+  },
+  "species": {
+    "C0": {
+      "intra_var": 0.09556968007236719,
+      "inter_margin": 7.429430782744882,
+      "silhouette": 0.5238270163536072,
+      "rankme": 397.9952697753906,
+      "uniformity": -1.4656749963760376,
+      "knn_purity@10": 0.997964031218188
+    },
+    "C1": {
+      "intra_var": 0.09556966718286276,
+      "inter_margin": 3.1064856887862486,
+      "silhouette": 0.30272966623306274,
+      "rankme": 367.3710632324219,
+      "uniformity": -1.059000849723816,
+      "knn_purity@10": 0.9428486596538854
+    },
+    "delta_silhouette_C1_minus_C0": -0.22109735012054443
+  },
+  "latent_taxonomy_probe": {
+    "real_silhouette": 0.13432976603507996,
+    "random_taxonomy_mean": -0.06713116139173508,
+    "random_taxonomy_std": 0.0020955067993799754,
+    "z_score": 96.13901806295402
+  }
+}
