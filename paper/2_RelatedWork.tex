@@ -1,0 +1,21 @@
+\section{Related Work}
+
+\subsection{Biological Vision-Language Models}
+
+Recent work has adapted CLIP-style contrastive learning to biological recognition, where fine-grained visual differences and long-tailed taxonomic distributions make general-purpose vision-language models less reliable. BioCLIP~\cite{stevens2024bioclip} introduced contrastive pretraining on TreeOfLife-10M and showed that using full Linnaean taxonomic prompts can substantially improve biological classification. BioCLIP2~\cite{gu2025bioclip2} further scaled this approach and reported stronger species-level performance, together with evidence that learned embeddings reflect ecological and functional structure. Related biological VLMs, such as BIOSCAN-CLIP / CLIBD~\cite{gong2024bioscan}, extend multimodal biological representation learning to additional modalities such as DNA barcodes.
+
+These models demonstrate the empirical value of taxonomic supervision, but their evaluations are largely performance-oriented. In particular, they do not fully separate whether hierarchical prompts help because they provide additional textual content or because they reorganize an already structured embedding space. Our work focuses on this mechanistic distinction.
+
+\subsection{Hierarchical Supervision and Hierarchy-Aware Prompting}
+
+A broad line of work uses class hierarchies as structured supervision. Hierarchical contrastive objectives assign different penalties or similarities according to label-tree distance~\cite{zhang2022usealllabels,kokilepersaud2024taxes}, while hierarchy-aware prompting methods enrich class descriptions with information from higher-level categories~\cite{novack2023chils,liang2024haprompts}. These approaches generally assume that hierarchical information improves recognition by adding useful semantic context.
+
+Our study asks a different question. Rather than proposing a new hierarchy-aware training method, we examine what role hierarchical prompts play in an existing biological VLM. Specifically, we test whether the effect of hierarchical prompting depends primarily on lexical taxonomic content or on the preservation of hierarchical structure itself.
+
+\subsection{Embedding Geometry and Random Prompt Ablations}
+
+Embedding-space diagnostics provide tools for analyzing representation structure beyond classification accuracy. Alignment and uniformity~\cite{wang2020understanding} measure how contrastive representations balance positive-pair compactness and global spread, while effective-rank measures such as RankMe~\cite{garrido2023rankme} characterize the spectral diversity of learned embeddings. Hierarchical error metrics further evaluate whether mistakes respect semantic or taxonomic distance~\cite{bertinetto2020mistakes}.
+
+Several studies suggest that pretrained vision-language models may already contain latent hierarchical structure. For example, CLIP embeddings have been shown to expose WordNet-aligned concepts~\cite{bertucci2024concept}. In parallel, WaffleCLIP~\cite{roth2023waffling} showed that random descriptors can preserve much of the benefit attributed to natural-language class descriptions, suggesting that prompt structure or ensembling effects may matter as much as lexical meaning. This observation directly motivates our counterfactual conditions C2--C4, which test whether structural arrangement or token identity drives the hierarchy effect in biological VLMs.
+
+Our work connects these threads in a biological setting with a ground-truth taxonomy. We compare flat and hierarchical prompts using geometric metrics, probe taxonomic structure across ranks, and introduce counterfactual prompt conditions that separate lexical content from hierarchical organization. This allows us to test whether hierarchical taxonomic prompts act mainly as information channels or as geometric organizers of pre-existing latent structure.

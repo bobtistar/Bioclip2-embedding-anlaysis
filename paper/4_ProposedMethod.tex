@@ -1,0 +1,108 @@
+\section{Methodology}
+\label{sec:method}
+
+In this work, we investigate the role of taxonomy-bearing prompts in biological vision-language models (VLMs). Our primary objective is to disentangle the contribution of semantic token enrichment from that of hierarchical organization. To this end, we construct a series of controlled prompt perturbations and analyze their effects on representation geometry at multiple taxonomic levels.
+
+\subsection{Prompt Conditions}
+
+We evaluate five prompt conditions that systematically manipulate semantic content and hierarchical structure.
+
+\begin{itemize}
+    \item \textbf{C0 (Flat Species Label):} Species name only. Serves as the flat baseline with no hierarchical information.
+
+    \item \textbf{C1 (Full Hierarchy):} Complete 7-rank taxonomy-preserving hierarchical prompt covering kingdom through species.
+
+    \item \textbf{C2 (Random-Token Hierarchy):} The 7-rank slot format is preserved while taxonomy-related semantic content is replaced with meaningless placeholder tokens (e.g., \texttt{taxK}, \texttt{taxP}), keeping the species token intact. This isolates the effect of hierarchical structure without any semantic content.
+
+    \item \textbf{C3 (Wrong Taxonomy):} The 7-rank slot format is syntactically preserved, but each rank slot is filled with the corresponding label from a randomly selected different species, destroying taxonomic coherence while retaining real taxonomy vocabulary.
+
+    \item \textbf{C4 (Bag-of-Words Taxonomy):} All taxonomy tokens are preserved but their order is randomized, removing rank-ordering structure while keeping the complete token set.
+
+\end{itemize}
+
+This design enables controlled comparisons between semantic content and hierarchical organization. In particular, the comparison between C2 and C3 isolates the role of taxonomic coherence versus token meaningfulness, and the comparison between C1 and C4 isolates the effect of rank ordering while maintaining nearly identical taxonomy token content.
+
+\subsection{Controlled Prompt Perturbations}
+
+Conventional comparisons between flat and hierarchical prompts simultaneously modify both semantic richness and hierarchical structure. Consequently, observed improvements cannot be directly attributed to either factor.
+
+To disentangle these effects, we construct a set of controlled perturbations that selectively preserve or disrupt semantic content and hierarchical organization. Figure~\ref{fig:perturbation_examples} illustrates representative prompt perturbation types; this work implements the five conditions C0--C4 described above.
+
+The perturbations are designed according to three principles:
+
+\begin{enumerate}
+    \item Semantic-preserving perturbations maintain taxonomy tokens while modifying their organization.
+
+    \item Structure-preserving perturbations maintain hierarchical slot format while altering semantic consistency.
+
+    \item Counterfactual perturbations intentionally violate taxonomy relationships to evaluate sensitivity to taxonomic coherence.
+\end{enumerate}
+
+This framework allows us to investigate whether hierarchy-bearing prompts act primarily through semantic enrichment or through hierarchical organization.
+
+\subsection{Embedding Extraction}
+
+All experiments are conducted using frozen vision-language models without additional training or fine-tuning.
+
+Given an image $x$ and a prompt $p$, image and text embeddings are obtained as
+
+\begin{equation}
+z_x = f_{\mathrm{img}}(x),
+\end{equation}
+
+\begin{equation}
+z_p = f_{\mathrm{text}}(p),
+\end{equation}
+
+where $f_{\mathrm{img}}$ and $f_{\mathrm{text}}$ denote the image and text encoders, respectively.
+
+We use BioCLIP2 (ViT-L/14, \texttt{hf:imageomics/bioclip-2}) as the primary biological VLM and OpenCLIP ViT-L/14 (\texttt{laion2b\_s32b\_b82k}) as a general-domain baseline. For each prompt condition, embeddings are extracted under identical inference settings to ensure fair comparison. For embedding-geometry analyses, image and text embeddings are $L_2$-normalized and concatenated; zero-shot classification assigns each image to the nearest per-class text prototype by cosine similarity without concatenation.
+
+\subsection{Representation Geometry Analysis}
+
+Rather than focusing solely on zero-shot classification accuracy, we analyze how prompt variations affect the geometric organization of the learned embedding space.
+
+\subsubsection{Species-Level Geometry}
+
+We first evaluate representation quality at the species level using the following metrics:
+
+\begin{itemize}
+    \item Silhouette score
+    \item $k$-nearest-neighbor (kNN) purity
+    \item Inter-class margin
+    \item Intra-class variance
+\end{itemize}
+
+These metrics quantify cluster compactness and class separability among species categories.
+
+\subsubsection{Rank-Level Taxonomy Geometry}
+
+To investigate the effect of hierarchy-bearing prompts beyond species discrimination, we further evaluate embedding organization across multiple taxonomic ranks:
+
+\begin{itemize}
+    \item Kingdom
+    \item Phylum
+    \item Class
+    \item Order
+    \item Family
+    \item Genus
+    \item Species
+\end{itemize}
+
+For each rank, embeddings are grouped according to the corresponding taxonomy label and evaluated using clustering-based metrics.
+
+This analysis allows us to determine whether hierarchy-bearing prompts primarily improve species-level discrimination or strengthen higher-level taxonomic organization.
+
+\subsection{Research Questions}
+
+Our experiments are designed to answer the following research questions:
+
+\begin{itemize}
+    \item \textbf{RQ1:} Do hierarchy-bearing prompts improve species-level representation quality compared with flat species labels?
+
+    \item \textbf{RQ2:} Do hierarchy-bearing prompts strengthen taxonomic organization at higher biological ranks such as family and genus?
+
+    \item \textbf{RQ3:} Does hierarchical organization contribute independently to representation quality, beyond the presence of taxonomy-related semantic tokens?
+
+    \item \textbf{RQ4:} Does the relative contribution of hierarchical organization differ between biologically pretrained and general-domain vision-language models?
+\end{itemize}

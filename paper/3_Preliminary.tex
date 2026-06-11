@@ -1,0 +1,85 @@
+\section{Preliminaries}
+\label{sec:preliminaries}
+
+We introduce the formulation of hierarchical prompting in vision-language models (VLMs) and define the controlled perturbation framework used throughout the paper. Our focus is to disentangle the effect of hierarchical organization from semantic token enrichment in prompt-based representation learning.
+
+\subsection{Vision-Language Prompt Embeddings}
+
+CLIP-style vision-language models learn a shared embedding space between images and text. Given an image $x$ and a text prompt $p$, the image encoder $f_{\mathrm{img}}$ and text encoder $f_{\mathrm{text}}$ produce $\ell_2$-normalized embeddings:
+
+\begin{equation}
+z_x = f_{\mathrm{img}}(x), \qquad
+z_p = f_{\mathrm{text}}(p).
+\end{equation}
+
+Image-text similarity is computed using cosine similarity:
+
+\begin{equation}
+s(x,p) = \cos(z_x, z_p)
+= \frac{z_x^\top z_p}{|z_x| |z_p|}.
+\end{equation}
+
+For zero-shot classification, class-specific prompts are encoded into text prototypes, and predictions are made based on nearest similarity in the shared embedding space. Consequently, prompt design directly influences the geometric organization of semantic representations.
+
+\subsection{Hierarchical Semantic Prompting}
+
+Hierarchical prompting augments class descriptions using multi-level semantic relations. For example, a species-level class label such as \texttt{Husky} may be expanded into a structured prompt:
+
+\begin{equation}
+\texttt{Animal} \rightarrow
+\texttt{Mammal} \rightarrow
+\texttt{Canine} \rightarrow
+\texttt{Husky}.
+\end{equation}
+
+We distinguish two components of a hierarchical prompt:
+
+\begin{itemize}
+\item \textbf{Semantic token content}: the set of semantic tokens contained in the prompt, e.g.,
+\[
+T = \{
+\texttt{Animal},
+\texttt{Mammal},
+\texttt{Canine},
+\texttt{Husky}
+\}.
+\]
+
+\item \textbf{Hierarchical organization}: the relational ordering and structural arrangement among these tokens.
+
+\end{itemize}
+
+Prior hierarchical prompting approaches typically modify both semantic token content and hierarchical organization simultaneously. As a result, improvements observed in prior work may arise either from richer semantic information or from the hierarchical organization itself.
+
+\subsection{Controlled Prompt Perturbations}
+
+To isolate the effect of hierarchical organization from semantic token enrichment, we construct controlled prompt variants that preserve identical semantic token content while perturbing only the organizational structure.
+
+Given a semantic token set $T$, representative perturbation types are illustrated in Figure~\ref{fig:perturbation_examples}. In this work, we operationalize these perturbation types as five specific conditions (C0--C4) defined in Section~\ref{sec:method}.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{ch3.png}
+  \caption{Representative prompt perturbation types that manipulate hierarchical
+  organization while preserving semantic token content. This work implements
+  five specific conditions (C0--C4) detailed in Section~\ref{sec:method}.}
+  \label{fig:perturbation_examples}
+\end{figure}
+
+All perturbation variants preserve the same semantic token set while modifying only hierarchical organization, ordering, or semantic consistency. This controlled setup enables direct analysis of the structural contribution of hierarchy beyond semantic token enrichment.
+
+\subsection{Representation Geometry Metrics}
+
+We evaluate prompt variants not only through downstream recognition performance, but also through representation geometry analysis in the shared embedding space.
+
+\paragraph{Intra-class Similarity.}
+We measure the average cosine similarity among embeddings belonging to the same semantic class.
+
+\paragraph{Inter-class Separability.}
+We evaluate the geometric separation between class centroids in the embedding space.
+
+\paragraph{Clustering Consistency.}
+We quantify semantic organization using clustering-based metrics such as silhouette score and $k$-nearest-neighbor purity.
+
+\paragraph{Embedding Visualization.}
+We additionally analyze embedding organization using low-dimensional projections such as UMAP and t-SNE to qualitatively examine the effect of hierarchical perturbations on semantic structure.

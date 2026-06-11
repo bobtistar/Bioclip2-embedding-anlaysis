@@ -1,0 +1,43 @@
+\section{Introduction}
+
+Hierarchical semantic prompts have recently emerged as an effective strategy for improving representation quality in vision-language models (VLMs). Prior work such as BioCLIP and BioCLIP2 shows that augmenting prompts with biologically structured taxonomic descriptions can improve fine-grained biological recognition and produce embedding spaces that appear more semantically organized. For example, a species label such as \textit{Passer domesticus} may be expanded into a full Linnaean hierarchy:
+
+\begin{center}
+    \includegraphics[width=\linewidth]{ch2.png}
+\end{center}
+
+These hierarchical prompts are associated with stronger clustering behavior and improved downstream recognition performance in biological domains.
+
+However, the source of this improvement remains unclear.
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_1unclear.png}
+    \caption{
+    Motivation and problem formulation.
+    Prior work (e.g., BioCLIP2) reports improved embedding organization under hierarchical prompts. However, prior comparisons simultaneously introduce hierarchical organization and richer semantic information, making the source of improvement unclear. We therefore construct a controlled perturbation framework that preserves semantic token content while systematically manipulating hierarchical structure.
+    }
+    \label{fig:motivation}
+\end{figure*}One possibility is that hierarchical prompts simply provide richer semantic information: higher-rank tokens such as family, order, or class introduce additional textual context that improves image-text alignment. Another possibility is that hierarchical organization itself contributes to representation organization by structuring relationships among semantic concepts within the embedding space. Existing evaluations do not disentangle these factors, since hierarchical prompts typically modify both semantic token content and organizational structure simultaneously.
+
+In this work, we investigate the functional role of hierarchical organization in VLM prompting through a controlled perturbation framework. Our central goal is to isolate the effect of hierarchical structure from semantic enrichment. To achieve this, we construct prompt variants that preserve identical semantic token content while systematically perturbing hierarchical organization, ordering, and semantic consistency. These perturbations allow us to examine whether the observed effects of hierarchical prompting depend more strongly on semantic content or on structural organization.
+
+We analyze these effects through embedding geometry rather than downstream accuracy alone. Specifically, we evaluate representation organization using clustering consistency, intra-/inter-class geometry, rank-resolved taxonomy probes, and controlled prompt-ablation experiments. In addition, we compare image-only and image-text embedding behavior to examine whether taxonomic structure is already partially encoded in the visual embedding space before hierarchical prompting is introduced.
+
+We evaluate our framework across multiple settings, including BioCLIP2 and OpenCLIP on a stratified iNat21 subset and the Rare Species benchmark. Across these settings, we observe a consistent trend: preserving coherent hierarchical organization shows a consistent directional trend toward improved higher-rank embedding structure more reliably than simply increasing semantic token content. In contrast, perturbing hierarchical relations degrades clustering consistency and taxonomic organization even under matched semantic token conditions.
+
+Our findings are more consistent with the view that hierarchical prompting contributes to representation organization beyond simple semantic enrichment. We do not claim that hierarchy alone universally determines representation quality, nor that the underlying mechanism is fully resolved. Rather, our results provide controlled evidence that hierarchical organization meaningfully affects embedding geometry in biological vision-language models, as evidenced across two model families and two biological benchmarks.
+
+Our contributions are summarized as follows:
+
+\begin{itemize}
+
+\item We formulate the distinction between semantic enrichment and hierarchical organization in hierarchical prompting for vision-language models.
+
+\item We introduce a controlled prompt perturbation framework that preserves semantic token content while systematically modifying hierarchical structure.
+
+\item We provide geometric analyses across BioCLIP2 and OpenCLIP on two biological benchmarks:
+a stratified iNat21 subset and the Rare Species dataset using clustering, taxonomy-aware, and embedding-space metrics.
+
+\item We show that preserving coherent hierarchical organization is associated with stronger higher-rank representation structure, even when species-level compactness does not consistently improve.
+
+\end{itemize}
